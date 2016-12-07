@@ -17,16 +17,18 @@ import javax.swing.*;
 public class ContactFrame extends JFrame
 {
 	static String fileSrc="h:\\객체\\텀프로젝트\\CList.txt";
+	static String loginId;
+	static HashMap<String,ContactInfo> c = new HashMap<String,ContactInfo>(); 
+	
 	JLabel labelName, labelAddress, labelEmail, labelPhone, labelFind, labelTitle;
 	JTextField textName, textAddress, textEmail, textPhone, textFind;
 	JButton buttonFind, buttonSave, buttonRemove;
-	static String loginId;
-	static HashMap<String,ContactInfo> c = new HashMap<String,ContactInfo>(); 
 	
 	ContactFrame(String id)
 	{
 		loginId = id;
 		File fn = new File(fileSrc);
+		
 		if(!fn.exists())
 		{
 			try{
@@ -38,12 +40,15 @@ public class ContactFrame extends JFrame
 				System.out.println("파일 입출력 에러");
 			}
 		}
+		
 		loadData();
 		//setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Container contentPane = getContentPane();
+		
 		Font font1=new Font("고딕",Font.BOLD,30);
 		Font font2=new Font("고딕",Font.PLAIN,17);
 		Font font3=new Font("고딕",Font.PLAIN,14);
+		
 		setTitle("주소록");
 		setSize(250,300);
 		setLayout(null);
@@ -87,6 +92,7 @@ public class ContactFrame extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				ContactInfo tmp = c.get(loginId+textFind.getText());
+				
 				if(tmp != null)
 				{
 					//System.out.println(tmp.getId());
@@ -107,7 +113,8 @@ public class ContactFrame extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				ContactInfo tmp = c.get(loginId+textName.getText());
-				if(tmp==null)	// 추가 완료
+				
+				if(tmp == null)
 				{
 					String name = textName.getText();
 					String add = textAddress.getText();
@@ -118,7 +125,7 @@ public class ContactFrame extends JFrame
 					//System.out.println("데이터 추가 완료");
 					JOptionPane.showMessageDialog(null, "주소록 추가 완료!", "알림", JOptionPane.OK_OPTION);
 				}
-				else if(tmp != null)	// 수정 완료
+				else if(tmp != null)
 				{
 					String name = textName.getText();
 					String add = textAddress.getText();
@@ -146,11 +153,13 @@ public class ContactFrame extends JFrame
 			public void actionPerformed(ActionEvent e)
 			{
 				int result = JOptionPane.showConfirmDialog(null, "삭제하시겠습니까?","경고",JOptionPane.YES_NO_OPTION);
-				if(result==JOptionPane.YES_OPTION)
+				
+				if(result == JOptionPane.YES_OPTION)
 				{
 					c.remove(loginId+textName.getText());
 					JOptionPane.showMessageDialog(null, "삭제되었습니다.", "알림", JOptionPane.OK_OPTION);
 				}
+				
 				textName.setText("");
 				textAddress.setText("");
 				textEmail.setText("");
@@ -159,26 +168,31 @@ public class ContactFrame extends JFrame
 				saveData();
 			}
 		});
+		
 		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();		
+		
 		int screenX=(int)(screen.getWidth() / 2 - this.getWidth() / 2);
 		int screenY=(int)(screen.getHeight() / 2 - this.getHeight() / 2);
+		
 		setLocation(screenX,screenY);
 		setVisible(true);
 	}
 	
 	static void loadData()
 	{
-		FileReader fr=null;	// 일정이 저장된 파일을 읽기 위한 FileReader
-		BufferedReader br = null;	// 파일에서 문자열을 읽어오기 위한 BufferedReader
+		FileReader fr = null;
+		BufferedReader br = null;
 		
-		String id=null,name=null,address=null,email=null,phone=null,r=null;	// bufferedreader에서 한 라인씩 읽어올 문자열 r
+		String id = null,name = null,address = null,email = null,phone = null,r = null;
+		
 		try
 		{
-			fr = new FileReader(fileSrc);	// 저장되어 있는 파일 오픈
-			br= new BufferedReader(fr);	// 파일의 문자열을 읽을 준비
-			while((r=br.readLine()) != null)	// 파일의 끝까지 한줄씩 읽는다.
+			fr = new FileReader(fileSrc);
+			br = new BufferedReader(fr);
+			while((r=br.readLine()) != null)
 			{
-				StringTokenizer st = new StringTokenizer(r,",");	// 읽은 값을 토큰으로 나눠 저장
+				StringTokenizer st = new StringTokenizer(r,",");
+				
 				while(st.hasMoreTokens())
 				{
 					name = st.nextToken();
@@ -187,6 +201,7 @@ public class ContactFrame extends JFrame
 					phone = st.nextToken();
 					id = st.nextToken();
 				} 
+				
 				ContactFrame.c.put(id+name,new ContactInfo(name,address,email,phone,id));	// 객체를 만들어 저장
 			}
 			fr.close();	// 파일 닫기
@@ -201,31 +216,34 @@ public class ContactFrame extends JFrame
 	
 	static void saveData()
 	{
-		FileWriter fw=null;	// 파일라이터 
-		BufferedWriter bw=null;	// 버퍼라이터
-		String str;	// 파일에 저장할 문자열
+		FileWriter fw = null; 
+		BufferedWriter bw = null;
+		String str;
+		
 		try
 		{
-			fw = new FileWriter(fileSrc);	// 일정 파일 오픈
-			bw = new BufferedWriter(fw);	// 커서 넘기고
+			fw = new FileWriter(fileSrc);
+			bw = new BufferedWriter(fw);
 			
 			Set<String> keys = ContactFrame.c.keySet();
 			Iterator<String> it = keys.iterator();
+			
 			while(it.hasNext())
 			{
 				ContactInfo temp = ContactFrame.c.get(it.next());
-				String name=temp.GetName();
-				String address=temp.GetAddress();
-				String email=temp.GetEmail();
-				String phone=temp.GetPhone();
+				String name = temp.GetName();
+				String address = temp.GetAddress();
+				String email = temp.GetEmail();
+				String phone = temp.GetPhone();
 				String id = temp.GetId();
-				str=name+","+address+","+email+","+phone+","+id+"\r\n";
+				str = name+","+address+","+email+","+phone+","+id+"\r\n";
 				bw.write(str);
 			}
-			bw.close();	// 파일 닫기.
+			
+			bw.close();
 			fw.close();
 		}
-		catch(IOException e)	// 예외처리
+		catch(IOException e)
 		{
 			e.printStackTrace();
 			System.out.println("입출력 오류");

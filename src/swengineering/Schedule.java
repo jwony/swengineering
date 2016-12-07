@@ -6,7 +6,7 @@ import javax.swing.*;
 
 public class Schedule extends JFrame 
 {
-	static int i=0;
+	static int i = 0;
 	static String[] fileSrc = new String[2];
 	static Vector<Cel> v = new Vector<Cel>();
 	static Vector<Cel> v2 = new Vector<Cel>();
@@ -16,9 +16,9 @@ public class Schedule extends JFrame
 	
 	Schedule(String id)
 	{
-		loginId=id;
-		fileSrc[0]= "h:\\∞¥√º\\≈“«¡∑Œ¡ß∆Æ\\DList.txt";
-		fileSrc[1]= "h:\\∞¥√º\\≈“«¡∑Œ¡ß∆Æ\\MList.txt";
+		loginId = id;
+		fileSrc[0] = "h:\\∞¥√º\\≈“«¡∑Œ¡ß∆Æ\\DList.txt";
+		fileSrc[1] = "h:\\∞¥√º\\≈“«¡∑Œ¡ß∆Æ\\MList.txt";
 		myD = new ScheduleFrame(id);
 		
 		for(int i = 0; i < 2; i++)
@@ -113,7 +113,7 @@ public class Schedule extends JFrame
 			
 			while(j<v2.size())
 			{
-				str=v2.get(j).getNote()+","+v2.get(j).getDate().get(Calendar.YEAR)+","+v2.get(j).getDate().get(Calendar.MONTH)+","+v2.get(j).getDate().get(Calendar.DAY_OF_MONTH)+","+v2.get(j).getId()+"\r\n";
+				str = v2.get(j).getNote()+","+v2.get(j).getDate().get(Calendar.YEAR)+","+v2.get(j).getDate().get(Calendar.MONTH)+","+v2.get(j).getDate().get(Calendar.DAY_OF_MONTH)+","+v2.get(j).getId()+"\r\n";
 				bw.write(str);
 				j++;
 			}
@@ -143,9 +143,9 @@ public class Schedule extends JFrame
 		try
 		{
 			fr = new FileReader(fileSrc[0]);
-			br= new BufferedReader(fr);
+			br = new BufferedReader(fr);
 		
-			while((r=br.readLine()) != null)
+			while((r = br.readLine()) != null)
 			{
 				StringTokenizer st = new StringTokenizer(r,",");
 				
@@ -169,9 +169,9 @@ public class Schedule extends JFrame
 			fr.close();
 			
 			fr = new FileReader(fileSrc[1]);
-			br= new BufferedReader(fr);
+			br = new BufferedReader(fr);
 			
-			while((r=br.readLine()) != null)
+			while((r = br.readLine()) != null)
 			{
 				StringTokenizer st = new StringTokenizer(r,",");
 				
@@ -203,14 +203,14 @@ public class Schedule extends JFrame
 	}
 	static void PrintCalAll()
 	{	
-		int i=0;
+		int i = 0;
 	
-		while(i<v.size())
+		while(i < v.size())
 			PrintCal(v.get(i++));
 
-		i=0;
+		i = 0;
 	
-		while(i<v2.size())
+		while(i < v2.size())
 			PrintCal(v2.get(i++));
 	}
 	
@@ -220,7 +220,7 @@ public class Schedule extends JFrame
 		int month = c.getDate().get(Calendar.MONTH)+1;
 		int date = c.getDate().get(Calendar.DAY_OF_MONTH);
 		
-		String day=null;
+		String day = null;
 		
 		switch(c.getDate().get(Calendar.DAY_OF_WEEK))
 		{

@@ -92,10 +92,10 @@ public class ContactFrame extends JFrame
 					//System.out.println(tmp.getId());
 					//System.out.println(loginId);
 					//if(tmp.getId().equals(loginId))
-					textName.setText(tmp.getName());
-					textAddress.setText(tmp.getAddress());
-					textEmail.setText(tmp.getEmail());
-					textPhone.setText(tmp.getPhone());
+					textName.setText(tmp.GetName());
+					textAddress.setText(tmp.GetAddress());
+					textEmail.setText(tmp.GetEmail());
+					textPhone.setText(tmp.GetPhone());
 				}
 				else if(tmp == null)
 					JOptionPane.showMessageDialog(null, "검색 결과가 없습니다.", "알림", JOptionPane.OK_OPTION);
@@ -125,10 +125,10 @@ public class ContactFrame extends JFrame
 					String email = textEmail.getText();
 					String phone = textPhone.getText();
 					
-					tmp.setName(name);
-					tmp.setAddress(add);
-					tmp.setEmail(email);
-					tmp.setPhone(phone);
+					tmp.SetName(name);
+					tmp.SetAddress(add);
+					tmp.SetEmail(email);
+					tmp.SetPhone(phone);
 					//System.out.println("데이터 수정 완료");
 					JOptionPane.showMessageDialog(null, "주소록 수정 완료!", "알림", JOptionPane.OK_OPTION);
 				}
@@ -214,11 +214,11 @@ public class ContactFrame extends JFrame
 			while(it.hasNext())
 			{
 				ContactInfo temp = ContactFrame.c.get(it.next());
-				String name=temp.getName();
-				String address=temp.getAddress();
-				String email=temp.getEmail();
-				String phone=temp.getPhone();
-				String id = temp.getId();
+				String name=temp.GetName();
+				String address=temp.GetAddress();
+				String email=temp.GetEmail();
+				String phone=temp.GetPhone();
+				String id = temp.GetId();
 				str=name+","+address+","+email+","+phone+","+id+"\r\n";
 				bw.write(str);
 			}

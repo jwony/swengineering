@@ -1,7 +1,5 @@
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.GridLayout;
 import java.util.Vector;
+import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
@@ -16,6 +14,7 @@ public class PhoneBookManagement extends PersonalAssistantSystem implements List
 	private JList userList;
 	
 	public void phoneBookPanel() {
+		collection = new Vector<User>();
 		phoneBookPanel = new JPanel(new BorderLayout());
 		addUserPanel = new JPanel(new BorderLayout());		
 		contentPanel = new JPanel(new BorderLayout());
@@ -84,14 +83,20 @@ public class PhoneBookManagement extends PersonalAssistantSystem implements List
 		Object source = e.getSource();				
 		
 		if(source == btnAdd){		
-			User user = new User(nameText.getText(), phoneNumberText.getText(),addressText.getText());
-			collection.addElement(user);
+			User user = new User(nameText.getText(), phoneNumberText.getText(), addressText.getText());
+			collection.addElement(user);			
 			
-			// 리스트에 이름을 추가
-			listModel.addElement(nameText.getText());
-			formReset();
-			//stdList.
+			listModel.addElement(user.toString());
+			formReset();			
 		}	
+		if(source == btnCancel) {
+			formReset();			
+		}
+		if(source == btnDelete) {
+			int deleteUser = userList.getSelectedIndex();
+			listModel.removeElementAt(deleteUser);
+			collection.removeElementAt(deleteUser);			
+		}
 	}
 
 	public void valueChanged(ListSelectionEvent e) {

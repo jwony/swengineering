@@ -35,5 +35,9 @@ public class User implements Serializable {
 		return userCount;
 	}
 	
-
+	public String toString() {
+		String inputContent;
+		inputContent = userName + "      " + userNumber + "     " + userAddress; 
+		return inputContent;
+	}
 }

@@ -1,6 +1,8 @@
 import java.awt.event.*;
 import javax.swing.*;
 
+import swengineering.ScheduleFrame;
+
 
 public class PersonalAssistantSystem extends JFrame implements ActionListener {
 	private JPanel mainPanel;
@@ -27,10 +29,17 @@ public class PersonalAssistantSystem extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {		
-		Object source = e.getSource();
-		PhoneBookManagement phoneBookScreen = new PhoneBookManagement();	
-		if(source == btnPhoneBook){	
-			phoneBookScreen.phoneBookPanel();
-		}				
+			Object source = e.getSource();
+			//PhoneBookManagement phoneBookScreen = new PhoneBookManagement();	
+			PhoneBookManagement phoneBookScreen = new PhoneBookManagement();	
+			ScheduleFrame scheduleScreen = new ScheduleFrame();
+			
+			if(source == btnPhoneBook){	
+				//phoneBookScreen.phoneBookPanel();
+				phoneBookScreen.phoneBookPanel();
+			}
+			else if(source == btnSchedule){
+				scheduleScreen.scheduleFrame();
+			}
 	}
 }

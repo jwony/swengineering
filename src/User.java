@@ -1,7 +1,7 @@
 import java.io.Serializable;
 
 public class User implements Serializable {
-	private String userName;
+	private static String userName;
 	private String userNumber;
 	private String userAddress;
 	private static int userCount=0;
@@ -13,7 +13,7 @@ public class User implements Serializable {
 		userCount++;
 	}
 	
-	public String getName() {
+	public static String getName() {
 		return userName;
 	}
 	public void setName(String name) {

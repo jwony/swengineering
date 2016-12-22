@@ -1,8 +1,6 @@
 import java.awt.event.*;
 import javax.swing.*;
 
-import swengineering.ScheduleFrame;
-
 
 public class PersonalAssistantSystem extends JFrame implements ActionListener {
 	private JPanel mainPanel;

@@ -1,36 +1,40 @@
 import java.awt.event.*;
 import javax.swing.*;
 
-
 public class PersonalAssistantSystem extends JFrame implements ActionListener {
 	private JPanel mainPanel;
-	private JButton btnAccount, btnPhoneBook, btnSchedule;	
-//	Comparator comparator;		
+	private JButton accountButton, phoneBookButton, scheduleButton;		
 	
 	public void mainPanel() {
 		mainPanel = new JPanel();
-		btnAccount = new JButton("Account");
-		btnPhoneBook = new JButton("PhoneBook");
-		btnSchedule = new JButton("Schedule");
-		btnAccount.addActionListener(this);
-		btnPhoneBook.addActionListener(this);
-		btnSchedule.addActionListener(this);
-		mainPanel.add(btnAccount);
-		mainPanel.add(btnPhoneBook);
-		mainPanel.add(btnSchedule);
+		accountButton = new JButton("Account");
+		phoneBookButton = new JButton("PhoneBook");
+		scheduleButton = new JButton("Schedule");
+		accountButton.addActionListener(this);
+		phoneBookButton.addActionListener(this);
+		scheduleButton.addActionListener(this);
+		mainPanel.add(accountButton);
+		mainPanel.add(phoneBookButton);
+		mainPanel.add(scheduleButton);
 		add(mainPanel);
 		setTitle("S/E Project");
-		setSize(600, 400);
+		setSize(400, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		setVisible(true);
 		setResizable(false);
 	}
 
-	public void actionPerformed(ActionEvent e) {		
-		Object source = e.getSource();
+	public void actionPerformed(ActionEvent event) {		
+		Object source = event.getSource();
 		PhoneBookManagement phoneBookScreen = new PhoneBookManagement();	
-		if(source == btnPhoneBook){	
+		if(source == accountButton){	
+			
+		}
+		if(source == phoneBookButton){	
 			phoneBookScreen.phoneBookPanel();
-		}				
+		}
+		if(source == scheduleButton){	
+			
+		}
 	}
 }

@@ -1,14 +1,10 @@
 import java.awt.event.ActionEvent;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 public class FirstScreen extends PersonalAssistantSystem {
 	private JPanel loginPanel;
 	private JLabel id, pw;		
-	private JTextField txtId, txtPw;
+	private JTextField userId, userPassword;
 	private JButton btnLogin;
 	
 	public static void main(String[] args) {
@@ -20,13 +16,13 @@ public class FirstScreen extends PersonalAssistantSystem {
 		loginPanel = new JPanel();
 		id = new JLabel("ID");	
 		pw = new JLabel("PASSWORD");
-		txtId = new JTextField(20);
-		txtPw = new JTextField(20);
+		userId = new JTextField(20);
+		userPassword = new JTextField(20);
 		btnLogin = new JButton("LOGIN");
 		loginPanel.add(id);
 		loginPanel.add(pw);
-		loginPanel.add(txtId);
-		loginPanel.add(txtPw);	
+		loginPanel.add(userId);
+		loginPanel.add(userPassword);	
 		loginPanel.add(btnLogin);
 		btnLogin.addActionListener(this);
 		add(loginPanel);	
@@ -36,8 +32,8 @@ public class FirstScreen extends PersonalAssistantSystem {
 		setResizable(false);
 	}
 
-	public void actionPerformed(ActionEvent e) {		
-		Object source = e.getSource();	
+	public void actionPerformed(ActionEvent event) {		
+		Object source = event.getSource();	
 		PersonalAssistantSystem mainScreen = new PersonalAssistantSystem();
 		if(source == btnLogin){
 			mainScreen.mainPanel();			

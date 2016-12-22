@@ -2,14 +2,13 @@ import java.util.Vector;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import javax.swing.event.*;
 
-public class PhoneBookManagement extends PersonalAssistantSystem implements ListSelectionListener {
+public class PhoneBookManagement extends PersonalAssistantSystem {
 	private Vector<User> collection;
-	private JPanel phoneBookPanel, listPanel, listViewPanel, addUserPanel, labelPanel, textPanel, contentPanel, buttonPanel;
-	private JButton btnDelete, btnAdd, btnCancel;
+	private JPanel phoneBookPanel, listPanel, listViewPanel, addUserPanel, contentPanel, labelPanel, textPanel, buttonPanel;
+	private JButton deleteButton, saveButton, cancelButton;
 	private JLabel nameLabel, phoneNumberLabel, addressLabel;
-	private JTextField nameText, phoneNumberText, addressText;	
+	private JTextField phoneBookName, phoneBookNumber, phoneBookAddress;
 	private DefaultListModel listModel;
 	private JList userList;
 	
@@ -17,95 +16,83 @@ public class PhoneBookManagement extends PersonalAssistantSystem implements List
 		collection = new Vector<User>();
 		phoneBookPanel = new JPanel(new BorderLayout());
 		addUserPanel = new JPanel(new BorderLayout());		
-		contentPanel = new JPanel(new BorderLayout());
-		
-		labelPanel = new JPanel(new GridLayout(3,1,10,10));
+		contentPanel = new JPanel(new BorderLayout());		
+		labelPanel = new JPanel(new GridLayout(3, 1, 0, 30));
 		nameLabel = new JLabel("이름");
 		phoneNumberLabel = new JLabel("번호");
 		addressLabel = new JLabel("주소");
-		
-		textPanel = new JPanel(new GridLayout(3,1,50,50));		
-		nameText = new JTextField(20);
-		phoneNumberText = new JTextField(20);
-		addressText = new JTextField(50);
-		
+		textPanel = new JPanel(new GridLayout(3, 1, 0, 30));
+		phoneBookName = new JTextField(20);
+		phoneBookNumber = new JTextField(20);
+		phoneBookAddress = new JTextField(50);
 		buttonPanel = new JPanel();
-		btnAdd = new JButton("SAVE");
-		btnAdd.addActionListener(this);
-		btnCancel = new JButton("CANCEL");
-		btnCancel.addActionListener(this);
-		btnAdd.addActionListener(this);
-		btnCancel.addActionListener(this);
-		
-		
-		labelPanel.add(nameLabel);		
-		labelPanel.add(phoneNumberLabel);		
+		saveButton = new JButton("SAVE");
+		saveButton.addActionListener(this);
+		cancelButton = new JButton("CANCEL");
+		cancelButton.addActionListener(this);				
+		labelPanel.add(nameLabel);
+		labelPanel.add(phoneNumberLabel);
 		labelPanel.add(addressLabel);
-		textPanel.add(nameText);
-		textPanel.add(phoneNumberText);
-		textPanel.add(addressText);		
-		buttonPanel.add(btnAdd);
-		buttonPanel.add(btnCancel);		
+		textPanel.add(phoneBookName);
+		textPanel.add(phoneBookNumber);
+		textPanel.add(phoneBookAddress);
+		buttonPanel.add(saveButton);
+		buttonPanel.add(cancelButton);
 		addUserPanel.add(contentPanel, BorderLayout.CENTER);
 		contentPanel.add(labelPanel, BorderLayout.WEST);
-		contentPanel.add(textPanel, BorderLayout.EAST);
-		addUserPanel.add(buttonPanel, BorderLayout.PAGE_END);		
-		setSize(600, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
-		setVisible(true);
-		setResizable(false);
-		
-		listPanel = new JPanel();		
+		contentPanel.add(textPanel, BorderLayout.CENTER);
+		addUserPanel.add(buttonPanel, BorderLayout.PAGE_END);
+		listPanel = new JPanel();
 		listViewPanel = new JPanel();
 		listModel = new DefaultListModel();
 		userList = new JList(listModel);
-		userList.setPreferredSize(new Dimension(300, 400));
-		userList.addListSelectionListener(this);
-		JScrollPane userScrollList = new JScrollPane(userList);		
-		listViewPanel.add(userScrollList);	
+		userList.setPreferredSize(new Dimension(500, 400));
+		JScrollPane userScrollList = new JScrollPane(userList);
+		listViewPanel.add(userScrollList);
 		listPanel.add(listViewPanel);	
-		btnDelete = new JButton("DELETE");
-		btnDelete.addActionListener(this);
-		listPanel.add(btnDelete);
-		
+		deleteButton = new JButton("DELETE");
+		deleteButton.addActionListener(this);	
+		listPanel.add(deleteButton);
 		add(phoneBookPanel);
 		phoneBookPanel.add(addUserPanel, BorderLayout.NORTH);
 		phoneBookPanel.add(listPanel, BorderLayout.SOUTH);
-		
 		setTitle("PhoneBook Management");
 		setSize(600, 400);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setVisible(true);
-		setResizable(false);		
+		setResizable(false);
 	}
 	
-	public void actionPerformed(ActionEvent e){
-		Object source = e.getSource();				
-		
-		if(source == btnAdd){		
-			User user = new User(nameText.getText(), phoneNumberText.getText(), addressText.getText());
-			collection.addElement(user);			
-			
-			listModel.addElement(user.toString());
-			formReset();			
+	public void actionPerformed(ActionEvent event){
+		Object source = event.getSource();
+		if(source == saveButton) {
+			addPhoneBook();
 		}	
-		if(source == btnCancel) {
+		if(source == cancelButton) {
 			formReset();			
 		}
-		if(source == btnDelete) {
-			int deleteUser = userList.getSelectedIndex();
-			listModel.removeElementAt(deleteUser);
-			collection.removeElementAt(deleteUser);			
+		if(source == deleteButton) {
+			deletePhonBook();
 		}
+	}
+	
+	public void addPhoneBook() {
+		User user = new User(phoneBookName.getText(), phoneBookNumber.getText(), phoneBookAddress.getText());
+		collection.addElement(user);
+		listModel.addElement(user.toString());
+		formReset();
 	}
 
-	public void valueChanged(ListSelectionEvent e) {
-				
-	}	
+	public void deletePhonBook() {
+		int deleteUser = userList.getSelectedIndex();
+		listModel.removeElementAt(deleteUser);
+		collection.removeElementAt(deleteUser);		
+	}
 	
 	void formReset() {
-		nameText.setText("");
-		phoneNumberText.setText("");
-		addressText.setText("");
+		phoneBookName.setText("");
+		phoneBookNumber.setText("");
+		phoneBookAddress.setText("");
 	}
+
 }

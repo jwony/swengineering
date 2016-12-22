@@ -13,7 +13,7 @@ public class PhoneBookManagement extends PersonalAssistantSystem implements List
 	private JLabel nameLabel, phoneNumberLabel, addressLabel;
 	private JTextField nameText, phoneNumberText, addressText;	
 	private DefaultListModel listModel;
-	private JList stdList;
+	private JList userList;
 	
 	public void phoneBookPanel() {
 		phoneBookPanel = new JPanel(new BorderLayout());
@@ -59,16 +59,16 @@ public class PhoneBookManagement extends PersonalAssistantSystem implements List
 		listPanel = new JPanel();		
 		listViewPanel = new JPanel();
 		listModel = new DefaultListModel();
-		stdList = new JList(listModel);
-		stdList.setPreferredSize(new Dimension(200, 400));
-		stdList.addListSelectionListener(this);
-		JScrollPane spList = new JScrollPane(stdList);		
-		listViewPanel.add(spList);	
+		userList = new JList(listModel);
+		userList.setPreferredSize(new Dimension(300, 400));
+		userList.addListSelectionListener(this);
+		JScrollPane userScrollList = new JScrollPane(userList);		
+		listViewPanel.add(userScrollList);	
 		listPanel.add(listViewPanel);	
 		btnDelete = new JButton("DELETE");
 		btnDelete.addActionListener(this);
 		listPanel.add(btnDelete);
-		listPanel.add(addUserPanel);
+		
 		add(phoneBookPanel);
 		phoneBookPanel.add(addUserPanel, BorderLayout.NORTH);
 		phoneBookPanel.add(listPanel, BorderLayout.SOUTH);
@@ -89,12 +89,18 @@ public class PhoneBookManagement extends PersonalAssistantSystem implements List
 			
 			// 리스트에 이름을 추가
 			listModel.addElement(nameText.getText());
-			//reset();
-			
+			formReset();
+			//stdList.
 		}	
 	}
 
 	public void valueChanged(ListSelectionEvent e) {
 				
 	}	
+	
+	void formReset() {
+		nameText.setText("");
+		phoneNumberText.setText("");
+		addressText.setText("");
+	}
 }

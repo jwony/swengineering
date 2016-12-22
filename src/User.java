@@ -6,9 +6,9 @@ public class User implements Serializable {
 	private String userAddress;
 	private static int userCount=0;
 	
-	public User(String name, String phone, String address) {
+	public User(String name, String phoneNumber, String address) {
 		this.userName = name;
-		this.userNumber = phone;
+		this.userNumber = phoneNumber;
 		this.userAddress = address;
 		userCount++;
 	}
@@ -22,8 +22,8 @@ public class User implements Serializable {
 	public String getPhone() {
 		return userNumber;
 	}
-	public void setPhone(String phone) {
-		this.userNumber = phone;
+	public void setPhone(String phoneNumber) {
+		this.userNumber = phoneNumber;
 	}
 	public String getAddress() {
 		return userAddress;
@@ -31,7 +31,7 @@ public class User implements Serializable {
 	public void setAddress(String address) {
 		this.userAddress = address;
 	}
-	public static int getStudentCount() {
+	public static int getUserCount() {
 		return userCount;
 	}
 	

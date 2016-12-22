@@ -1,9 +1,6 @@
-//import java.util.Comparator;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+import java.awt.event.*;
+import javax.swing.*;
+
 
 public class PersonalAssistantSystem extends JFrame implements ActionListener {
 	private JPanel mainPanel;
@@ -31,9 +28,9 @@ public class PersonalAssistantSystem extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {		
 		Object source = e.getSource();
-		//PhoneBookManagement phoneBookScreen = new PhoneBookManagement();	
+		PhoneBookManagement phoneBookScreen = new PhoneBookManagement();	
 		if(source == btnPhoneBook){	
-			//phoneBookScreen.phoneBookPanel();
+			phoneBookScreen.phoneBookPanel();
 		}				
 	}
 }

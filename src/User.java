@@ -1,8 +1,13 @@
 import java.io.Serializable;
 
 public class User implements Serializable {
+<<<<<<< HEAD
 	private String userName;
 	private String userPhoneNumber;
+=======
+	private static String userName;
+	private String userNumber;
+>>>>>>> origin/master
 	private String userAddress;
 	private static int userCount=0;
 	
@@ -13,7 +18,7 @@ public class User implements Serializable {
 		userCount++;
 	}
 	
-	public String getName() {
+	public static String getName() {
 		return userName;
 	}
 	

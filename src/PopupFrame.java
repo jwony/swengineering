@@ -4,33 +4,41 @@ import java.util.Calendar;
 import java.util.StringTokenizer;
 import javax.swing.*;
 
-public class PopupFrame {
-	String [] days = {"SUN","MON","TUE","WED","THU","FRI","SAT"};
+public class PopupFrame extends JFrame
+{
+	String [] days = {"일","월","화","수","목","금","토"};
 	JPanel panelMemo, panelSchedule, panelButton;
 	JEditorPane textSchedule, textMemo;
 	JScrollPane scrollSchedule, scrollMemo;
 	Calendar calendar;
 	String loginId;
-	PopupFrame(){}
+	PopupFrame(){};
 	
+<<<<<<< HEAD:src/PopupFrame.java
 	PopupFrame(int y, int m, int d, int d2)
 	{
 		// loginId=id;
 		// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		// setLayout(null);
-		setDate(y,m,d);
-		// setTitle(y+"년 "+m+"월 "+d+"일 "+days[d2-1]+"요일");
+=======
+	PopupFrame(int y, int m, int d, int d2, String id)
+	{
+		loginId=id;
 		
-		MemoInit();
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setLayout(null);
+>>>>>>> origin/master:src/PopupFrame.java
+		setDate(y,m,d);
+		setTitle(y+"년 "+m+"월 "+d+"일 "+days[d2-1]+"요일");
+		
 		ScheduleInit();
 		ButtonInit();
 		
-		// add(panelMemo);
-		// add(panelSchedule);
-		// add(panelButton);
+		add(panelSchedule);
+		add(panelButton);
 		
-		// setSize(500,350);
-		// setVisible(true);
+		setSize(500,350);
+		setVisible(true);
 	}
 
 	void ScheduleInit()
@@ -47,6 +55,7 @@ public class PopupFrame {
 		scrollSchedule = new JScrollPane(textSchedule);
 		
 		panelSchedule.add(scrollSchedule,BorderLayout.CENTER);
+<<<<<<< HEAD:src/PopupFrame.java
 		panelSchedule.setLocation(40,50);
 		panelSchedule.setSize(200,200);
 		panelSchedule.setBackground(Color.YELLOW);
@@ -73,6 +82,13 @@ public class PopupFrame {
 		panelMemo.setVisible(true);
 	}
 	
+=======
+		panelSchedule.setLocation(40,40);
+		panelSchedule.setSize(400,200);
+		panelSchedule.setBackground(Color.MAGENTA);
+		panelSchedule.setVisible(true);
+	}
+>>>>>>> origin/master:src/PopupFrame.java
 	
 	void ButtonInit()
 	{
@@ -87,7 +103,7 @@ public class PopupFrame {
 		panelButton.add(noButton);
 		
 		panelButton.setSize(200,100);
-		panelButton.setLocation(300,250);
+		panelButton.setLocation(260,250);
 		panelButton.setVisible(true);
 	}
 	
@@ -102,7 +118,7 @@ public class PopupFrame {
 	
 	void CloseFrame()
 	{
-		// dispose();
+		dispose();
 	}
 	
 	void saveData(String data1,String data2)
@@ -113,9 +129,9 @@ public class PopupFrame {
 		if(!data2.equals(""))
 			Schedule.v2.add(new Cel(data2, calendar, loginId));
 		
-		//Diary.printCalAll();
+		Schedule.PrintCalAll();
 		Schedule.SaveData();
-		Schedule.myD.RefreshData();
+		// Schedule.myD.RefreshData();
 	}
 	
 
@@ -134,16 +150,6 @@ public class PopupFrame {
 					while(st.hasMoreTokens())
 						saveData(st.nextToken(),"");
 					}
-				
-				if(!textMemo.getText().equals(""));
-				{
-					StringTokenizer st = new StringTokenizer(textMemo.getText(),"\n\r");
-					
-					while(st.hasMoreTokens())
-						saveData("",st.nextToken());
-					
-					//saveData("",txtMemo.getText());
-				}
 				
 				CloseFrame();
 			}

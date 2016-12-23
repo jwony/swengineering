@@ -34,7 +34,7 @@ public class PersonalAssistantSystem extends JFrame implements ActionListener {
 		ScheduleFrame scheduleScreen = new ScheduleFrame();
 
 		if(source == accountButton){	
-			accontScreen.accountFrame();
+			accountScreen.accountFrame();
 		}
 		if(source == phoneBookButton){	
 			phoneBookScreen.phoneBookFrame();

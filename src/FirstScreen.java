@@ -12,10 +12,10 @@ public class FirstScreen extends PersonalAssistantSystem {
 	
 	public static void main(String[] args) {
 		FirstScreen setFirstScreen = new FirstScreen();
-		setFirstScreen.firstScreenFrmae();
+		setFirstScreen.firstScreenFrame();
 	}
 	
-	public void firstScreenFrmae() {	
+	public void firstScreenFrame() {	
 		loginPanel = new JPanel();
 		loginPanel.setLayout(new GridLayout(4,2));
 		userNameInput = new JTextField(20);

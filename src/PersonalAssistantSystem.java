@@ -29,12 +29,12 @@ public class PersonalAssistantSystem extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {		
 		Object source = event.getSource();
-		//AccountManagement accountScreen = new AccountManagement();
+		AccountManagement accountScreen = new AccountManagement();
 		PhoneBookManagement phoneBookScreen = new PhoneBookManagement();
 		ScheduleFrame scheduleScreen = new ScheduleFrame();
 
 		if(source == accountButton){	
-		//	accontScreen.accountFrame();
+			accontScreen.accountFrame();
 		}
 		if(source == phoneBookButton){	
 			phoneBookScreen.phoneBookFrame();

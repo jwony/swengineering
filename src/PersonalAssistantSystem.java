@@ -31,7 +31,8 @@ public class PersonalAssistantSystem extends JFrame implements ActionListener {
 		Object source = event.getSource();
 		//AccountManagement accountScreen = new AccountManagement();
 		PhoneBookManagement phoneBookScreen = new PhoneBookManagement();
-		
+		ScheduleFrame scheduleScreen = new ScheduleFrame();
+
 		if(source == accountButton){	
 		//	accontScreen.accountFrame();
 		}
@@ -39,7 +40,7 @@ public class PersonalAssistantSystem extends JFrame implements ActionListener {
 			phoneBookScreen.phoneBookFrame();
 		}
 		if(source == scheduleButton){	
-			
+			scheduleScreen.scheduleFrame();			
 		}
 	}
 }

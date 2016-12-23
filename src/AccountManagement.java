@@ -35,7 +35,7 @@ public class AccountManagement extends PersonalAssistantSystem implements Action
     
     	else if(source == logOut){
             FirstScreen firstScreen = new FirstScreen();
-            firstScreen.firstScreenPanel();
+            firstScreen.firstScreenFrame();
     	}
     }
 

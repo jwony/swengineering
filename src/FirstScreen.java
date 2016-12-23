@@ -14,6 +14,7 @@ public class FirstScreen extends PersonalAssistantSystem {
 	
 	public void firstScreenPanel() {	
 		loginPanel = new JPanel();
+		loginPanel.setLayout(new GridLayout(4,2));
 		userNameInput = new JTextField(20);
 		userIdInput = new JTextField(20);
 		userPasswordInput = new JTextField(20);

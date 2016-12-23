@@ -11,16 +11,15 @@ public class ScheduleFrame extends JFrame
 	Calendar todayCalendar, calendar, memodayCalendar;
 	int year, month, date, today, day, memoday=0;
 	JButton[] calendarButton = new JButton[49];
-	JPanel calendarPanel, headPanel, datePanel, selectPanel, schedulePanel;
+	JPanel calendarPanel, headPanel, datePanel, selectPanel, schedulePanel, buttonPanel;
     JTextField textMonth, textYear;
-    JTextArea textSchedule;
+    JList DefaultListModel;
+	ListModel previewList;
+    private JList scheduleList;
+    JButton modifyButton, deleteButton;
     JScrollPane scrollSchedule;
 	JLabel labelYear, labelMonth, labelDate, labelDay, labelCalendar;
-<<<<<<< HEAD:src/ScheduleFrame.java
-	PopupFrame popupframe;
-=======
->>>>>>> origin/master:src/ScheduleFrame.java
-	String loginId;
+	// String loginId;
 	int todayNumber;
 	
 	public void scheduleFrame()
@@ -35,22 +34,13 @@ public class ScheduleFrame extends JFrame
 		getDay(year,month,date);
 	
 		labelCalendar = new JLabel("",JLabel.CENTER);
-<<<<<<< HEAD:src/ScheduleFrame.java
-		// loginId=User.username;
-=======
-		loginId = User.getName();
->>>>>>> origin/master:src/ScheduleFrame.java
+		// loginId = User.getName();
 		
 		setTitle("Schedule");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
-<<<<<<< HEAD:src/ScheduleFrame.java
-		Container contantPane = getContentPane();
-		contantPane.setLayout(null);
-=======
 		Container contentPane = getContentPane();
 		contentPane.setLayout(null);
->>>>>>> origin/master:src/ScheduleFrame.java
 				
 		HeadPanelInit();
 		CalendarPanelInit();
@@ -95,11 +85,7 @@ public class ScheduleFrame extends JFrame
         textYear.setPreferredSize(new Dimension(100,50));
         textMonth.setPreferredSize(new Dimension(100,50));
        
-<<<<<<< HEAD:src/ScheduleFrame.java
-		headPanel.setLocation(30,80);
-=======
 		headPanel.setLocation(30,30);
->>>>>>> origin/master:src/ScheduleFrame.java
 	}
 	
 	public void CalendarPanelInit()
@@ -137,7 +123,7 @@ public class ScheduleFrame extends JFrame
 				month = memodayCalendar.get(Calendar.MONTH)+1;
 				date = memodayCalendar.get(Calendar.DAY_OF_MONTH);
 				
-				PopupFrame pf = new PopupFrame(year, month, date, day, loginId);
+				PopupFrame pf = new PopupFrame(year, month, date, day);
 			}
 		});
 		
@@ -152,55 +138,6 @@ public class ScheduleFrame extends JFrame
 				textMonth.setText(month+"");
 			}
 		});
-	}
-	
-	public void SelectPanelInit()
-	{
-		Font ff=new Font("고딕",Font.PLAIN,15);
-		JButton buttonGoToday;
-		buttonGoToday = new JButton();
-		LineBorder b = new LineBorder(Color.DARK_GRAY,1);
-		
-		selectPanel = new JPanel();
-		selectPanel.setSize(300,40);
-		
-		ButtonGroup selectGroup = new ButtonGroup();
-		
-		radioSelect = new JRadioButton[2];
-		radioSelect[0] = new JRadioButton("메모");	
-		radioSelect[0].addItemListener(new MyItemListener());
-		radioSelect[1] = new JRadioButton("스케쥴");
-		radioSelect[1].addItemListener(new MyItemListener());
-		radioSelect[1].doClick();
-		
-		selectPanel.add(radioSelect[1]);
-		selectPanel.add(radioSelect[0]);
-		
-		selectGroup.add(radioSelect[1]);
-		selectGroup.add(radioSelect[0]);
-		
-		FrameManager.CreateJButton(selectPanel, buttonGoToday, "Go Today!", 40, 40, 100, 8, ff);
-				
-		buttonGoToday.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent e)
-			{
-				//System.out.println("");
-				year = todayCalendar.get(Calendar.YEAR);
-				month = todayCalendar.get(Calendar.MONTH)+1;
-				date = todayCalendar.get(Calendar.DAY_OF_MONTH);
-				//System.out.println(year+"  "+month+"  "+date);
-				RefreshData();
-				SetDay();
-				DrawCalendar();
-				
-				textYear.setText(year+"");
-				textMonth.setText(month+"");
-			}
-		});
-		
-		selectPanel.setBorder(b);
-		selectPanel.setLocation(450,80);
 	}
 	
 	public void DatePanelInit()
@@ -214,35 +151,8 @@ public class ScheduleFrame extends JFrame
 
 		datePanel.add(labelCalendar,BorderLayout.CENTER);
 		datePanel.setBackground(Color.PINK);
-<<<<<<< HEAD:src/ScheduleFrame.java
-		datePanel.setLocation(450,120);	// 위치 설정
-		datePanel.setBorder(b);
-	}
-	
-	public void MemoPanelInit()
-	{
-		memoPanel = new JPanel();
-		memoPanel.setSize(300,400);
-		memoPanel.setLayout(new BorderLayout());
-		LineBorder b = new LineBorder(Color.DARK_GRAY,1);
-		
-		JLabel memoLabel = new JLabel("MEMO",JLabel.CENTER);
-		
-		textMemo = new JTextArea();
-		textMemo.setEditable(false);
-		textMemo.setPreferredSize(new Dimension(200,350));
-		
-		scrollMemo = new JScrollPane(textMemo);
-		
-		memoPanel.add(memoLabel,BorderLayout.NORTH);
-		memoPanel.add(scrollMemo,BorderLayout.CENTER);
-		memoPanel.setBackground(Color.YELLOW);
-		memoPanel.setLocation(450,150);
-		memoPanel.setBorder(b);
-=======
 		datePanel.setLocation(450,70);
 		datePanel.setBorder(b);
->>>>>>> origin/master:src/ScheduleFrame.java
 	}
 	
 	public void SchedulePanelInit()
@@ -254,20 +164,26 @@ public class ScheduleFrame extends JFrame
 		
 		JLabel scheduleLabel = new JLabel("SCHEDULE",JLabel.CENTER);
 		
-		textSchedule = new JTextArea();
-		textSchedule.setEditable(false);
-		textSchedule.setPreferredSize(new Dimension(200,350));
+		new DefaultListModel();
+		scheduleList = new JList(previewList);
+		scheduleList.setPreferredSize(new Dimension(200,350));
+		JScrollPane userScrollList = new JScrollPane(scheduleList);
+		scrollSchedule = new JScrollPane(scheduleList);
 		
-		scrollSchedule = new JScrollPane(textSchedule);
+		buttonPanel = new JPanel();
+		
+		modifyButton = new JButton("MODIFY");
+		deleteButton = new JButton("DELETE");
+		
+		buttonPanel.add(modifyButton, BorderLayout.WEST);
+		buttonPanel.add(deleteButton, BorderLayout.EAST);
+		
+		scrollSchedule.add(buttonPanel, BorderLayout.EAST);
 		
 		schedulePanel.add(scheduleLabel,BorderLayout.NORTH);
 		schedulePanel.add(scrollSchedule,BorderLayout.CENTER);
 		schedulePanel.setBackground(Color.MAGENTA);
-<<<<<<< HEAD:src/ScheduleFrame.java
-		schedulePanel.setLocation(450,150);
-=======
 		schedulePanel.setLocation(450,100);
->>>>>>> origin/master:src/ScheduleFrame.java
 		schedulePanel.setBorder(b);
 	}
 	
@@ -418,10 +334,6 @@ public class ScheduleFrame extends JFrame
 					
 					if(actionButton.getBackground()==Color.YELLOW)
 					{
-<<<<<<< HEAD:src/ScheduleFrame.java
-						popupframe = new PopupFrame(year, month, date, day);
-=======
->>>>>>> origin/master:src/ScheduleFrame.java
 						actionButton.setBackground(Color.WHITE);
 						
 						if((year==todayCalendar.get(Calendar.YEAR))&&(month==(todayCalendar.get(Calendar.MONTH)+1)))
@@ -443,26 +355,4 @@ public class ScheduleFrame extends JFrame
 			}
 		}
 	}
-<<<<<<< HEAD:src/ScheduleFrame.java
-
-	class MyItemListener implements ItemListener
-	{
-		public void itemStateChanged(ItemEvent e)
-		{
-			if(radioSelect[0].isSelected())
-			{
-				schedulePanel.setVisible(false);
-				memoPanel.setVisible(true);
-				RefreshData();
-			}
-			else if(radioSelect[1].isSelected())
-			{
-				memoPanel.setVisible(false);
-				schedulePanel.setVisible(true);
-				RefreshData();
-			}
-		}
-	}
-=======
->>>>>>> origin/master:src/ScheduleFrame.java
 }

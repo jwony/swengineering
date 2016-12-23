@@ -18,17 +18,17 @@ public class PhoneBookManagement extends PersonalAssistantSystem {
 		addUserPanel = new JPanel(new BorderLayout());		
 		contentPanel = new JPanel(new BorderLayout());		
 		labelPanel = new JPanel(new GridLayout(3, 1, 0, 30));
-		nameLabel = new JLabel("ì´ë¦„");
-		phoneNumberLabel = new JLabel("ë²ˆí˜¸");
-		addressLabel = new JLabel("ì£¼ì†Œ");
+		nameLabel = new JLabel("ÀÌ¸§");
+		phoneNumberLabel = new JLabel("¹øÈ£");
+		addressLabel = new JLabel("ÁÖ¼Ò");
 		textPanel = new JPanel(new GridLayout(3, 1, 0, 30));
 		phoneBookName = new JTextField(20);
 		phoneBookNumber = new JTextField(20);
 		phoneBookAddress = new JTextField(50);
 		buttonPanel = new JPanel();
-		saveButton = new JButton("ì €ì¥");
+		saveButton = new JButton("ÀúÀå");
 		saveButton.addActionListener(this);
-		cancelButton = new JButton("ì·¨ì†Œ");
+		cancelButton = new JButton("Ãë¼Ò");
 		cancelButton.addActionListener(this);				
 		labelPanel.add(nameLabel);
 		labelPanel.add(phoneNumberLabel);
@@ -50,7 +50,7 @@ public class PhoneBookManagement extends PersonalAssistantSystem {
 		JScrollPane userScrollList = new JScrollPane(userList);
 		listViewPanel.add(userScrollList);
 		listPanel.add(listViewPanel);	
-		deleteButton = new JButton("ì‚­ì œ");
+		deleteButton = new JButton("»èÁ¦");
 		deleteButton.addActionListener(this);	
 		listPanel.add(deleteButton);
 		add(phoneBookPanel);
@@ -80,11 +80,7 @@ public class PhoneBookManagement extends PersonalAssistantSystem {
 		String inputName = phoneBookName.getText();
 		String inputPhoneNumber = phoneBookNumber.getText();
 		String inputAddress = phoneBookAddress.getText();		
-		if (inputName.equals("")|inputPhoneNumber.equals("")|inputAddress.equals("")) {
-			JOptionPane.showMessageDialog(this, "ì´ë¦„/ë²ˆí˜¸/ì£¼ì†Œê°€ ëª¨ë‘ ì…ë ¥ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤.");
-		}
-		else
-			addPhoneBook(inputName, inputPhoneNumber, inputAddress);		
+		addPhoneBook(inputName, inputPhoneNumber, inputAddress);		
 	}
 	
 	public void addPhoneBook(String inputName, String inputPhoneNumber, String inputAddress) {

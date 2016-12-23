@@ -1,41 +1,39 @@
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Calendar;
-import java.util.StringTokenizer;
 import javax.swing.*;
+import java.util.Vector;
 
 public class PopupFrame extends JFrame
 {
+	private Vector<Schedule> scheduleData;
 	String [] days = {"일","월","화","수","목","금","토"};
-	JPanel panelMemo, panelSchedule, panelButton;
-	JEditorPane textSchedule, textMemo;
-	JScrollPane scrollSchedule, scrollMemo;
+	JPanel schedulePanel, buttonPanel;
+	JTextField timeText, titleText;
+	JTextArea memoText;
+	JScrollPane scrollMemo;
 	Calendar calendar;
-	String loginId;
+	// String loginId;
+	
+	// private String time, title, memo;
+	// private static int scheduleCount=0;
+	
 	PopupFrame(){};
 	
-<<<<<<< HEAD:src/PopupFrame.java
 	PopupFrame(int y, int m, int d, int d2)
 	{
 		// loginId=id;
-		// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		// setLayout(null);
-=======
-	PopupFrame(int y, int m, int d, int d2, String id)
-	{
-		loginId=id;
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLayout(null);
->>>>>>> origin/master:src/PopupFrame.java
 		setDate(y,m,d);
 		setTitle(y+"년 "+m+"월 "+d+"일 "+days[d2-1]+"요일");
 		
 		ScheduleInit();
 		ButtonInit();
 		
-		add(panelSchedule);
-		add(panelButton);
+		add(schedulePanel);
+		add(buttonPanel);
 		
 		setSize(500,350);
 		setVisible(true);
@@ -43,68 +41,62 @@ public class PopupFrame extends JFrame
 
 	void ScheduleInit()
 	{
-		panelSchedule = new JPanel();
-		panelSchedule.setLayout(new BorderLayout());
+		schedulePanel = new JPanel();
+		schedulePanel.setLayout(new BorderLayout());
 		
 		JLabel labelSchedule = new JLabel("스케쥴",JLabel.CENTER);
-		panelSchedule.add(labelSchedule,BorderLayout.NORTH);
+		schedulePanel.add(labelSchedule,BorderLayout.NORTH);
 		
-		textSchedule = new JEditorPane();
-		textSchedule.setPreferredSize(new Dimension(200,350));
+		JLabel timeLabel = new JLabel("시간");
+		JLabel titleLabel = new JLabel("제목");
+		JLabel memoLabel = new JLabel("메모");
 		
-		scrollSchedule = new JScrollPane(textSchedule);
+		timeText = new JTextField(10);
+		titleText = new JTextField(20);
+		memoText = new JTextArea();
+		memoText.setPreferredSize(new Dimension(200,350));
 		
-		panelSchedule.add(scrollSchedule,BorderLayout.CENTER);
-<<<<<<< HEAD:src/PopupFrame.java
-		panelSchedule.setLocation(40,50);
-		panelSchedule.setSize(200,200);
-		panelSchedule.setBackground(Color.YELLOW);
-		panelSchedule.setVisible(true);
+		JPanel timePanel = new JPanel();
+		timePanel.add(timeLabel, BorderLayout.WEST);
+		timePanel.add(timeText, BorderLayout.EAST);
+		
+		JPanel titlePanel = new JPanel();
+		titlePanel.add(titleLabel, BorderLayout.WEST);
+		titlePanel.add(titleText, BorderLayout.EAST);
+		
+		JPanel memoPanel = new JPanel();
+		memoPanel.add(memoLabel, BorderLayout.NORTH);
+		memoPanel.add(memoText, BorderLayout.SOUTH);
+		
+		
+		
+		scrollMemo = new JScrollPane(memoText);
+		
+		schedulePanel.add(timePanel,BorderLayout.CENTER);
+		schedulePanel.add(titlePanel,BorderLayout.CENTER);
+		schedulePanel.add(memoPanel,BorderLayout.SOUTH);
+		
+		schedulePanel.setLocation(40,40);
+		schedulePanel.setSize(400,200);
+		schedulePanel.setBackground(Color.MAGENTA);
+		schedulePanel.setVisible(true);
 	}
-	
-	void MemoInit()
-	{
-		panelMemo = new JPanel();
-		panelMemo.setLayout(new BorderLayout());
-		
-		JLabel labelMemo = new JLabel("메모",JLabel.CENTER);
-		panelMemo.add(labelMemo,BorderLayout.NORTH);
-		
-		textMemo = new JEditorPane();
-		textMemo.setPreferredSize(new Dimension(200,350));
-		
-		scrollMemo = new JScrollPane(textMemo);
-		
-		panelMemo.add(scrollMemo,BorderLayout.CENTER);
-		panelMemo.setLocation(240,50);
-		panelMemo.setSize(200,200);
-		panelMemo.setBackground(Color.MAGENTA);
-		panelMemo.setVisible(true);
-	}
-	
-=======
-		panelSchedule.setLocation(40,40);
-		panelSchedule.setSize(400,200);
-		panelSchedule.setBackground(Color.MAGENTA);
-		panelSchedule.setVisible(true);
-	}
->>>>>>> origin/master:src/PopupFrame.java
 	
 	void ButtonInit()
 	{
-		panelButton = new JPanel();
+		buttonPanel = new JPanel();
 		
 		JButton okButton = new JButton("SAVE");
 		okButton.addActionListener(new PopupActionListener());
-		panelButton.add(okButton);
+		buttonPanel.add(okButton);
 		
 		JButton noButton = new JButton("CANCEL");
 		noButton.addActionListener(new PopupActionListener());
-		panelButton.add(noButton);
+		buttonPanel.add(noButton);
 		
-		panelButton.setSize(200,100);
-		panelButton.setLocation(260,250);
-		panelButton.setVisible(true);
+		buttonPanel.setSize(200,100);
+		buttonPanel.setLocation(260,250);
+		buttonPanel.setVisible(true);
 	}
 	
 	void setDate(int y,int m,int d)
@@ -121,20 +113,12 @@ public class PopupFrame extends JFrame
 		dispose();
 	}
 	
-	void saveData(String data1,String data2)
+	void saveData()
 	{
-		if(!data1.equals(""))
-			Schedule.v.add(new Cel(data1, calendar, loginId));
-
-		if(!data2.equals(""))
-			Schedule.v2.add(new Cel(data2, calendar, loginId));
-		
-		Schedule.PrintCalAll();
-		Schedule.SaveData();
-		// Schedule.myD.RefreshData();
+		Schedule sc = new Schedule(timeText.getText(), titleText.getText(), memoText.getText());
+		scheduleData.addElement(sc);
 	}
 	
-
 	class PopupActionListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent e)
@@ -143,14 +127,7 @@ public class PopupFrame extends JFrame
 			
 			if(button.getText().equals("SAVE"))
 			{
-				if(!textSchedule.getText().equals(""))
-				{
-					StringTokenizer st = new StringTokenizer(textSchedule.getText(),"\n\r");
-				
-					while(st.hasMoreTokens())
-						saveData(st.nextToken(),"");
-					}
-				
+				saveData();
 				CloseFrame();
 			}
 			else if(button.getText().equals("CANCEL"))

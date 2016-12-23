@@ -1,8 +1,3 @@
-<<<<<<< HEAD:src/FrameManager.java
-
-
-=======
->>>>>>> origin/master:src/FrameManager.java
 import java.awt.*;
 import javax.swing.*;
 

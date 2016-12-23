@@ -5,6 +5,7 @@ import javax.swing.*;
 
 public class FirstScreen extends PersonalAssistantSystem {
 	private JPanel loginPanel;
+	private JLabel id, pw;	
 	private Vector <UserAccount> userAccountVector = new Vector <UserAccount>();		
 	private JTextField userNameInput, userIdInput, userPasswordInput;
 	private JButton loginButton, registerButton;
@@ -45,10 +46,10 @@ public class FirstScreen extends PersonalAssistantSystem {
 	    PersonalAssistantSystem mainScreen = new PersonalAssistantSystem();
 
             for(int index = 0 ;index <= userAccountVector.size(); index++){
- 	        UserAccount userObject = new UserAccount();
- 		userObject = userAccountVector.elementAt(index);
+ 	        UserAccount user = new UserAccount();
+ 		user = userAccountVector.elementAt(index);
  				
- 		if(loginId.equals(userObject.userId) && loginPassword.equals(userObject.userPassword)){
+ 		if(loginId.equals(user.userId) && loginPassword.equals(user.userPassword)){
  		    mainScreen.mainPanel();
  		    return ("Success");
  	        }

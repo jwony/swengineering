@@ -42,16 +42,16 @@ public class FirstScreen extends PersonalAssistantSystem {
 		    	String loginId = userIdInput.getText();
  			String loginPassword = userPasswordInput.getText();
  			for(int index = 0 ;index <= userAccountVector.size(); index++){
- 	            UserAccount user = new UserAccount();
- 	            user = userAccountVector.elementAt(index);
+ 	                    UserAccount user = new UserAccount();
+ 	                    user = userAccountVector.elementAt(index);
  	            
- 	            if(loginId.equals(user.userId) && loginPassword.equals(user.userPassword)){
- 	           	    mainScreen.mainPanel();		
- 	            }	
- 	            System.out.println("로그인 실패하셨습니다!");
- 	            userNameInput.setText("");
- 	            userIdInput.setText("");
- 	            userPasswordInput.setText("");
+ 	                    if(loginId.equals(user.userId) && loginPassword.equals(user.userPassword)){
+ 	           	       mainScreen.mainPanel();		
+ 	                    }	
+ 	                System.out.println("로그인 실패하셨습니다!");
+ 	                userNameInput.setText("");
+ 	                userIdInput.setText("");
+ 	                userPasswordInput.setText("");
  		  	}
                  		 
  		}		 
@@ -61,17 +61,9 @@ public class FirstScreen extends PersonalAssistantSystem {
  			userName = userNameInput.getText();
  			userId = userIdInput.getText();
  			userPassword = userPasswordInput.getText();
- 	        UserAccount user = new UserAccount(userName, userId, userPassword);
- 	        userAccountVector.addElement(user);
- 	        System.out.println(userAccountVector);
- 			System.out.println(userAccountVector.size());
- 			try{ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("userAccount.txt"));
- 			oos.writeObject(user);
- 			oos.close();
- 			}catch(IOException exception){
- 				System.out.println("파일출력 오류!");
- 			} 
- 			userNameInput.setText("");
+ 	                UserAccount user = new UserAccount(userName, userId, userPassword);
+ 	                userAccountVector.addElement(user);
+ 	  		userNameInput.setText("");
  			userIdInput.setText("");
  			userPasswordInput.setText("");
  		}

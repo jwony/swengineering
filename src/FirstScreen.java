@@ -1,9 +1,10 @@
 import java.awt.event.ActionEvent;
 import javax.swing.*;
+import java.util.Vector;
 
 public class FirstScreen extends PersonalAssistantSystem {
 	private Vector <UserAccount> userAccountVector = new Vector <UserAccount>();		
-	private JTextField userNameInput, userIdInput, userPasswordInpt;
+	private JTextField userNameInput, userIdInput, userPasswordInput;
 	private JButton buttonLogin, buttonRegister;
 	
 	public static void main(String[] args) {
@@ -17,16 +18,16 @@ public class FirstScreen extends PersonalAssistantSystem {
 		userIdInput = new JTextField(20);
 		userPasswordInput = new JTextField(20);
 		buttonLogin = new JButton("LOGIN");
-		buttonRegister = new JButton("REGISTER);
+		buttonRegister = new JButton("REGISTER");
 		loginPanel.add(new JLabel("NAME"));
 		loginPanel.add(userNameInput);
 		loginPanel.add(new JLabel("ID"));
                 loginPanel.add(userIdInput);
 		loginPanel.add(new JLabel("Password"));
 		loginPanel.add(userPassword);			     
-		loginPanel.add(bttonLogin);
+		loginPanel.add(buttonLogin);
 		loginPanel.add(buttonRegister);			     
-		bttonLogin.addActionListener(this);
+		buttonLogin.addActionListener(this);
 		buttonRegister.addActionListener(this);			     
 		add(loginPanel);	
 		setSize(300, 400);

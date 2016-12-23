@@ -27,8 +27,9 @@ public class AccountManagement extends PersonalAssistantSystem implements Action
 	
     public void actionPerformed(ActionEvent e){
     	Object source = e.getSource();
-    	
+    	ChangeIdAndPassword changeIdAndPasswordScreen = new ChangeIdAndPassword();
     	if(source == changeIdAndPassword){
+            changeIdAndPasswordScreen.changeAccountFrame();
     		
     	}
     

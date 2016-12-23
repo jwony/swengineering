@@ -46,10 +46,10 @@ public class FirstScreen extends PersonalAssistantSystem {
 	    PersonalAssistantSystem mainScreen = new PersonalAssistantSystem();
 
             for(int index = 0 ;index <= userAccountVector.size(); index++){
- 	        UserAccount user = new UserAccount();
- 		user = userAccountVector.elementAt(index);
+ 	        UserAccount userObject = new UserAccount();
+ 		userObject = userAccountVector.elementAt(index);
  				
- 		if(loginId.equals(user.userId) && loginPassword.equals(user.userPassword)){
+ 		if(loginId.equals(userObject.userId) && loginPassword.equals(userObject.userPassword)){
  		    mainScreen.mainPanel();
  		    return ("Success");
  	        }

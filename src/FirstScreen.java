@@ -26,7 +26,7 @@ public class FirstScreen extends PersonalAssistantSystem {
 		loginPanel.add(new JLabel("NAME"));
 		loginPanel.add(userNameInput);
 		loginPanel.add(new JLabel("ID"));
-        loginPanel.add(userIdInput);
+                loginPanel.add(userIdInput);
 		loginPanel.add(new JLabel("Password"));
 		loginPanel.add(userPasswordInput);			     
 		loginPanel.add(loginButton);
@@ -39,26 +39,34 @@ public class FirstScreen extends PersonalAssistantSystem {
 		setVisible(true);
 		setResizable(false);
 	}
+	
+	public String login(String parameterLoginId, String parameterLoginPassword){
+            String loginId = parameterLoginId;
+            String loginPassword = parameterLoginPassword;
+	    PersonalAssistantSystem mainScreen = new PersonalAssistantSystem();
 
+            for(int index = 0 ;index <= userAccountVector.size(); index++){
+ 	        UserAccount user = new UserAccount();
+ 		user = userAccountVector.elementAt(index);
+ 				
+ 		if(loginId.equals(user.userId) && loginPassword.equals(user.userPassword)){
+ 		    mainScreen.mainPanel();
+ 		    return ("Success");
+ 	        }
+ 				
+ 	    }   
+	   return("Fail");
+	}
+	
 	public void actionPerformed(ActionEvent event) {		
 		Object source = event.getSource();	
 		PersonalAssistantSystem mainScreen = new PersonalAssistantSystem();
 
 		if(source == loginButton){
-			String loginId = userIdInput.getText();
- 			String loginPassword = userPasswordInput.getText();
- 			for(int index = 0 ;index <= userAccountVector.size(); index++){
- 				UserAccount user = new UserAccount();
- 				user = userAccountVector.elementAt(index);
- 				
- 				if(loginId.equals(user.userId) && loginPassword.equals(user.userPassword)){
- 					mainScreen.mainPanel();
- 					}
- 				System.out.println("로그인 실패하셨습니다!");
- 				userNameInput.setText("");
- 				userIdInput.setText("");
- 				userPasswordInput.setText("");
- 				}                 		 
+			String parameterLoginId = userIdInput.getText();
+ 			String parameterLoginPassword = userPasswordInput.getText();
+			String loginResult = login(parameterLoginId, parameterLoginPassword);
+ 		   	System.out.println(loginResult);	 
  		}		 
  		
  		else if (source == registerButton){

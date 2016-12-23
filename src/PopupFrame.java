@@ -1,5 +1,3 @@
-package swengineering;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Calendar;
@@ -15,9 +13,9 @@ public class PopupFrame {
 	String loginId;
 	PopupFrame(){}
 	
-	PopupFrame(int y, int m, int d, int d2,String id)
+	PopupFrame(int y, int m, int d, int d2)
 	{
-		loginId=id;
+		// loginId=id;
 		// setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		// setLayout(null);
 		setDate(y,m,d);
@@ -35,6 +33,26 @@ public class PopupFrame {
 		// setVisible(true);
 	}
 
+	void ScheduleInit()
+	{
+		panelSchedule = new JPanel();
+		panelSchedule.setLayout(new BorderLayout());
+		
+		JLabel labelSchedule = new JLabel("스케쥴",JLabel.CENTER);
+		panelSchedule.add(labelSchedule,BorderLayout.NORTH);
+		
+		textSchedule = new JEditorPane();
+		textSchedule.setPreferredSize(new Dimension(200,350));
+		
+		scrollSchedule = new JScrollPane(textSchedule);
+		
+		panelSchedule.add(scrollSchedule,BorderLayout.CENTER);
+		panelSchedule.setLocation(40,50);
+		panelSchedule.setSize(200,200);
+		panelSchedule.setBackground(Color.YELLOW);
+		panelSchedule.setVisible(true);
+	}
+	
 	void MemoInit()
 	{
 		panelMemo = new JPanel();
@@ -49,41 +67,22 @@ public class PopupFrame {
 		scrollMemo = new JScrollPane(textMemo);
 		
 		panelMemo.add(scrollMemo,BorderLayout.CENTER);
-		panelMemo.setLocation(40,50);
+		panelMemo.setLocation(240,50);
 		panelMemo.setSize(200,200);
 		panelMemo.setBackground(Color.MAGENTA);
 		panelMemo.setVisible(true);
 	}
 	
-	void ScheduleInit()
-	{
-		panelSchedule = new JPanel();
-		panelSchedule.setLayout(new BorderLayout());
-		
-		JLabel labelSchedule = new JLabel("일정",JLabel.CENTER);
-		panelSchedule.add(labelSchedule,BorderLayout.NORTH);
-		
-		textSchedule = new JEditorPane();
-		textSchedule.setPreferredSize(new Dimension(200,350));
-		
-		scrollSchedule = new JScrollPane(textSchedule);
-		
-		panelSchedule.add(scrollSchedule,BorderLayout.CENTER);
-		panelSchedule.setLocation(240,50);
-		panelSchedule.setSize(200,200);
-		panelSchedule.setBackground(Color.YELLOW);
-		panelSchedule.setVisible(true);
-	}
 	
 	void ButtonInit()
 	{
 		panelButton = new JPanel();
 		
-		JButton okButton = new JButton("저장");
+		JButton okButton = new JButton("SAVE");
 		okButton.addActionListener(new PopupActionListener());
 		panelButton.add(okButton);
 		
-		JButton noButton = new JButton("취소");
+		JButton noButton = new JButton("CANCEL");
 		noButton.addActionListener(new PopupActionListener());
 		panelButton.add(noButton);
 		
@@ -126,7 +125,7 @@ public class PopupFrame {
 		{
 			JButton button = (JButton)e.getSource();
 			
-			if(button.getText().equals("저장"))
+			if(button.getText().equals("SAVE"))
 			{
 				if(!textSchedule.getText().equals(""))
 				{
@@ -148,7 +147,7 @@ public class PopupFrame {
 				
 				CloseFrame();
 			}
-			else if(button.getText().equals("취소"))
+			else if(button.getText().equals("CANCEL"))
 				CloseFrame();
 		}
 	}

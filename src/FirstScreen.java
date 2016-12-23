@@ -5,7 +5,7 @@ public class FirstScreen extends PersonalAssistantSystem {
 	private JPanel loginPanel;
 	private JLabel id, pw;		
 	private JTextField userId, userPassword;
-	private JButton btnLogin;
+	private JButton loginButton;
 	
 	public static void main(String[] args) {
 		FirstScreen setFirstScreen = new FirstScreen();
@@ -18,13 +18,13 @@ public class FirstScreen extends PersonalAssistantSystem {
 		pw = new JLabel("PASSWORD");
 		userId = new JTextField(20);
 		userPassword = new JTextField(20);
-		btnLogin = new JButton("LOGIN");
+		loginButton = new JButton("LOGIN");
 		loginPanel.add(id);
 		loginPanel.add(pw);
 		loginPanel.add(userId);
 		loginPanel.add(userPassword);	
-		loginPanel.add(btnLogin);
-		btnLogin.addActionListener(this);
+		loginPanel.add(loginButton);
+		loginButton.addActionListener(this);
 		add(loginPanel);	
 		setSize(300, 400);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
@@ -35,7 +35,7 @@ public class FirstScreen extends PersonalAssistantSystem {
 	public void actionPerformed(ActionEvent event) {		
 		Object source = event.getSource();	
 		PersonalAssistantSystem mainScreen = new PersonalAssistantSystem();
-		if(source == btnLogin){
+		if(source == loginButton){
 			mainScreen.mainPanel();			
 		}		
 	}

@@ -12,7 +12,7 @@ public class PhoneBookManagement extends PersonalAssistantSystem {
 	private DefaultListModel listModel;
 	private JList userList;
 	
-	public void phoneBookPanel() {
+	public void phoneBookFrame() {
 		collection = new Vector<User>();
 		phoneBookPanel = new JPanel(new BorderLayout());
 		addUserPanel = new JPanel(new BorderLayout());		
@@ -26,9 +26,9 @@ public class PhoneBookManagement extends PersonalAssistantSystem {
 		phoneBookNumber = new JTextField(20);
 		phoneBookAddress = new JTextField(50);
 		buttonPanel = new JPanel();
-		saveButton = new JButton("SAVE");
+		saveButton = new JButton("저장");
 		saveButton.addActionListener(this);
-		cancelButton = new JButton("CANCEL");
+		cancelButton = new JButton("취소");
 		cancelButton.addActionListener(this);				
 		labelPanel.add(nameLabel);
 		labelPanel.add(phoneNumberLabel);
@@ -50,7 +50,7 @@ public class PhoneBookManagement extends PersonalAssistantSystem {
 		JScrollPane userScrollList = new JScrollPane(userList);
 		listViewPanel.add(userScrollList);
 		listPanel.add(listViewPanel);	
-		deleteButton = new JButton("DELETE");
+		deleteButton = new JButton("삭제");
 		deleteButton.addActionListener(this);	
 		listPanel.add(deleteButton);
 		add(phoneBookPanel);
@@ -66,27 +66,49 @@ public class PhoneBookManagement extends PersonalAssistantSystem {
 	public void actionPerformed(ActionEvent event){
 		Object source = event.getSource();
 		if(source == saveButton) {
-			addPhoneBook();
+			saveUserInformation();
 		}	
 		if(source == cancelButton) {
 			formReset();			
 		}
-		if(source == deleteButton) {
-			deletePhonBook();
+		if(source == deleteButton) {			
+			deletePhoneBook();
 		}
 	}
 	
-	public void addPhoneBook() {
-		User user = new User(phoneBookName.getText(), phoneBookNumber.getText(), phoneBookAddress.getText());
+	public void saveUserInformation() {
+		String inputName = phoneBookName.getText();
+		String inputPhoneNumber = phoneBookNumber.getText();
+		String inputAddress = phoneBookAddress.getText();		
+		addPhoneBook(inputName, inputPhoneNumber, inputAddress);		
+	}
+	
+	public void addPhoneBook(String inputName, String inputPhoneNumber, String inputAddress) {
+		User user = new User(inputName, inputPhoneNumber, inputAddress);
 		collection.addElement(user);
 		listModel.addElement(user.toString());
 		formReset();
 	}
+		
+	public String addPhoneBookNameTest(String inputName, String inputPhoneNumber, String inputAddress) {
+		User user = new User(inputName, inputPhoneNumber, inputAddress);
+		return user.getName();		
+	}
+	
+	public String addPhoneBookNumberTest(String inputName, String inputPhoneNumber, String inputAddress) {
+		User user = new User(inputName, inputPhoneNumber, inputAddress);
+		return user.getPhoneNumber();		
+	}
+	
+	public String addPhoneBookAddressTest(String inputName, String inputPhoneNumber, String inputAddress) {
+		User user = new User(inputName, inputPhoneNumber, inputAddress);
+		return user.getAddress();		
+	}
 
-	public void deletePhonBook() {
-		int deleteUser = userList.getSelectedIndex();
-		listModel.removeElementAt(deleteUser);
-		collection.removeElementAt(deleteUser);		
+	public void deletePhoneBook() {
+		int selectedUser = userList.getSelectedIndex();				
+		listModel.removeElementAt(selectedUser);
+		collection.removeElementAt(selectedUser);			
 	}
 	
 	void formReset() {
@@ -94,5 +116,4 @@ public class PhoneBookManagement extends PersonalAssistantSystem {
 		phoneBookNumber.setText("");
 		phoneBookAddress.setText("");
 	}
-
 }

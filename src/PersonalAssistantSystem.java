@@ -1,21 +1,24 @@
+import java.awt.BorderLayout;
 import java.awt.event.*;
 import javax.swing.*;
 
 public class PersonalAssistantSystem extends JFrame implements ActionListener {
-	private JPanel mainPanel;
+	private JPanel mainPanel, selectMenuPanel;
 	private JButton accountButton, phoneBookButton, scheduleButton;		
 	
 	public void mainPanel() {
-		mainPanel = new JPanel();
+		mainPanel = new JPanel(new BorderLayout());
+		selectMenuPanel = new JPanel();
 		accountButton = new JButton("Account");
 		phoneBookButton = new JButton("PhoneBook");
 		scheduleButton = new JButton("Schedule");
 		accountButton.addActionListener(this);
 		phoneBookButton.addActionListener(this);
 		scheduleButton.addActionListener(this);
-		mainPanel.add(accountButton);
-		mainPanel.add(phoneBookButton);
-		mainPanel.add(scheduleButton);
+		selectMenuPanel.add(accountButton);
+		selectMenuPanel.add(phoneBookButton);
+		selectMenuPanel.add(scheduleButton);		
+		mainPanel.add(selectMenuPanel, BorderLayout.CENTER);
 		add(mainPanel);
 		setTitle("S/E Project");
 		setSize(400, 400);
@@ -26,12 +29,14 @@ public class PersonalAssistantSystem extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {		
 		Object source = event.getSource();
-		PhoneBookManagement phoneBookScreen = new PhoneBookManagement();	
+		//AccountManagement accountScreen = new AccountManagement();
+		PhoneBookManagement phoneBookScreen = new PhoneBookManagement();
+		
 		if(source == accountButton){	
-			
+		//	accontScreen.accountFrame();
 		}
 		if(source == phoneBookButton){	
-			phoneBookScreen.phoneBookPanel();
+			phoneBookScreen.phoneBookFrame();
 		}
 		if(source == scheduleButton){	
 			

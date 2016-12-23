@@ -1,5 +1,3 @@
-package swengineering;
-
 import java.io.*;
 import java.util.*;
 import javax.swing.*;
@@ -17,9 +15,9 @@ public class Schedule extends JFrame
 	Schedule(String id)
 	{
 		loginId = id;
-		fileSrc[0] = "h:\\∞¥√º\\≈“«¡∑Œ¡ß∆Æ\\DList.txt";
-		fileSrc[1] = "h:\\∞¥√º\\≈“«¡∑Œ¡ß∆Æ\\MList.txt";
-		myD = new ScheduleFrame(id);
+		fileSrc[0] = "c:\\∞¥√º\\≈“«¡∑Œ¡ß∆Æ\\DList.txt";
+		fileSrc[1] = "c:\\∞¥√º\\≈“«¡∑Œ¡ß∆Æ\\MList.txt";
+		myD = new ScheduleFrame();
 		
 		for(int i = 0; i < 2; i++)
 		{
@@ -224,19 +222,19 @@ public class Schedule extends JFrame
 		
 		switch(c.getDate().get(Calendar.DAY_OF_WEEK))
 		{
-			case Calendar.SUNDAY: day="SUN";
+			case Calendar.SUNDAY: day="¿œ";
 			break;
-			case Calendar.MONDAY: day="MON";
+			case Calendar.MONDAY: day="ø˘";
 			break;
-			case Calendar.TUESDAY: day="TUE";
+			case Calendar.TUESDAY: day="»≠";
 			break;
-			case Calendar.WEDNESDAY: day="WED";
+			case Calendar.WEDNESDAY: day="ºˆ";
 			break;
-			case Calendar.THURSDAY: day="THU";
+			case Calendar.THURSDAY: day="∏Ò";
 			break;
-			case Calendar.FRIDAY: day="FRI";
+			case Calendar.FRIDAY: day="±›";
 			break;
-			case Calendar.SATURDAY: day="SAT";
+			case Calendar.SATURDAY: day="≈‰";
 			break;
 		}
 	

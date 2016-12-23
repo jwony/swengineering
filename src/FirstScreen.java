@@ -5,7 +5,6 @@ import javax.swing.*;
 
 public class FirstScreen extends PersonalAssistantSystem {
 	private JPanel loginPanel;
-	private JLabel id, pw;	
 	private Vector <UserAccount> userAccountVector = new Vector <UserAccount>();		
 	private JTextField userNameInput, userIdInput, userPasswordInput;
 	private JButton loginButton, registerButton;
